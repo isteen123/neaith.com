@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+HK&display=swap');
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Noto Sans HK', sans-serif;
+  background: #fff;
+}
+.slider {
+  margin-bottom: 30px;
+  position: relative;
+}
+.slider .owl-item.active.center .slider-card {
+  transform: scale(1.15);
+  opacity: 1;
+ 
+  /* background: linear-gradient(to bottom, #a1a1a1, #4c4c4c);  */
+  color: #111111;
+  font-family:'Times New Roman', serif;
+}
+.slider-card {
+  background: #fff;
+  padding: 0px 0px;
+  margin: 50px 15px 90px 15px;
+  border-radius: 5px;
+  box-shadow: 0 15px 45px -20px rgb(0 0 0 / 73%);
+  transform: scale(0.9);
+  opacity: 0.5;
+  transition: all 0.3s;
+}
+.slider-card img {
+  border-radius: 5px 5px 0px 0px;
+}
+.owl-nav .owl-prev {
+  display: none;
+}
+.owl-nav .owl-next {
+  display: none;
+}
+.owl-dots {
+  text-align: center;
+}
+
+
+.card-img-top{
+  outline: none !important;
+}
+
+.text-css{
+  font-family:'Times New Roman', serif;
+  color: #111111;
+  font-weight: 5px;
+  cursor: pointer;
+  
+
+}
+
+.text-header{
+  padding-top: 10%;
+  padding-bottom: 10%;
+  
+}
+.test-owl{
+  font-family:'Times New Roman', serif;
+  color: #111111;
+  padding-bottom: 3px;
+  text-decoration: none !important;
+}
+.remove-underline{
+  text-decoration: none !important;
+  background-color: #090909;
+  border-radius: 5px;
+  padding: 6px;
+  color: white;
+}
+
+.remove-underline:hover{
+  text-decoration: none !important;
+  background-color: #b7b6b7;
+  border-radius: 5px;
+  padding: 6px;
+  color: #090909;
+}
+#product-gallary{
+  padding-top: 10%;
+}

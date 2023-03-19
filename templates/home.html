@@ -1,0 +1,257 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Bootstrap demo</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+      <!-- -------------respon owl carolse---------- -->
+      <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
+      <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+      <!-- ------end  responsible------------------- -->
+      <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+   </head>
+   <body>
+      <!-- ---------------Nav bar------------ -->
+      <nav class="navbar bg-body-tertiary fixed-top">
+         <div class="container-fluid">
+            <h1><a class="navbar-brand text-css" href="{% url 'index'%}">N e a i t h  &nbsp; F a s h i o n</a></h1>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+               <div class="offcanvas-header">
+                  <h5 class="offcanvas-title text-css" id="offcanvasNavbarLabel">N e a i t h . c o m</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+               </div>
+               <div class="offcanvas-body">
+                  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                     <li class="nav-item">
+                        <a class="nav-link text-css" href="{% url 'cartdetail' %}">Cart</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link text-css" href="{%url 'wishlistdetail' %}">Whish List</a>
+                     </li>
+                     <li class="nav-item">
+                        {% if user.is_authenticated %}
+                        <a class="nav-link text-css" href="{% url 'handllogout' %}">Logout</a>
+                        {% else %}
+                        <a class="nav-link text-css" href="{% url 'Loginpage' %}">Login</a>
+                        {% endif %}
+                     </li>
+                  </ul>
+                  
+               </div>
+            </div>
+         </div>
+      </nav>
+      <!-- ---------------end Nav bar------------ -->
+      <!-- ---------------banner owl ------------- -->
+      <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
+         <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+         </div>
+         <div class="carousel-inner">
+            <div class="carousel-item active">
+               <img src="{% static 'images/banner-bg.png' %}" class="d-block w-100" alt="...">
+               <div class="carousel-caption d-none d-md-block">
+                  <h5 class="text-css">First slide label</h5>
+                  <p class="text-css">Some representative placeholder content for the first slide.</p>
+               </div>
+            </div>
+            <div class="carousel-item">
+               <img src="{% static 'images/banners-keep-site-fresh.jpg' %}" class="d-block w-100" alt="...">
+               <div class="carousel-caption d-none d-md-block">
+                  <h5 class="text-css">Second slide label</h5>
+                  <p class="text-css">Some representative placeholder content for the second slide.</p>
+               </div>
+            </div>
+            <div class="carousel-item">
+               <img src="{% static 'images/banner-bg.png' %}./" class="d-block w-100" alt="...">
+               <div class="carousel-caption d-none d-md-block">
+                  <h5 class="text-css">Third slide label</h5>
+                  <p class="text-css">Some representative placeholder content for the third slide.</p>
+               </div>
+            </div>
+         </div>
+         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+         <span class="visually-hidden">Previous</span>
+         </button>
+         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+         <span class="carousel-control-next-icon" aria-hidden="true"></span>
+         <span class="visually-hidden">Next</span>
+         </button>
+      </div>
+      <!-- --------------end banner owl----------- -->
+      <!-- ---------------Type display------------ -->
+      <div class="container">
+         <div class="row text-center">
+            <h2 class="text-center text-css text-header">Women Kids & Men</h2>
+         </div>
+         <div class="row">
+            {% for i in buyer %} 
+            <div class="col text-center">
+               <a href="{% url 'product_view' i.id 1 %}"><img src="{{i.photo.url}}" alt=""></a>
+               <h4 class="text-css">{{i.name}}</h4>
+            </div>
+               {% endfor %}
+            
+         </div>
+      </div>
+      <!-- --------------------------------------- -->
+      <!-- Responsive owl Carousel-------- -->
+      <section id="slider" class="pt-5">
+         <div class="container">
+            <h1 class="text-center text-css text-header">List Of Categories</h1>
+            <div class="slider">
+               <div class="owl-carousel">
+                 
+                  {% for i in cat_name %} 
+                  <div class="slider-card">
+                     <div class="d-flex justify-content-center align-items-center mb-4">
+                        <a href="{% url 'product_view' i.id 2 %}">  <img src="{{i.photo.url}}" alt=""></a>
+                     </div>
+                     <h5 class="mb-0 text-center test-owl">{{i.name}}</h5>
+                  </div>
+               {% endfor %}
+                 
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- ------end responsible--------- -->
+      <!-- ---------product gallary------- -->
+      <div class="container-fluid">
+         <div class="px-lg-5">
+            <!-- End -->
+            <div class="row">
+              
+               {% for i in product %} 
+            <!-- Gallery item -->
+            
+            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+               <div class="bg-white rounded shadow-sm">
+                  <div class="card" style="width: 18rem;">
+                  <a href="{% url 'view_product' i.id %}">
+                     <div style="height: 280px; width: 180px;">
+                        <img src="{{i.image.url}}" class="card-img-top" alt="." style="height:100%;width:auto; margin-left:50px;"></a>
+                       </div></a>
+                     <div class="card-body">
+                        <h5 class="card-title text-css">{{i.name}}</h5>
+                     </div>
+                     <ul class="list-group list-group-flush">
+                        <li class="list-group-item text-css">₹{{i.price}}/-</li>
+                        <li class="list-group-item text-css">Available</li>
+                        <li class="list-group-item text-css">Off {{i.off}}%</li>
+                        <li class="list-group-item text-css"><a href="{% url 'sellerhome' i.posted_by.id %}" style="text-decoration:none; color: black;">posted by {{i.posted_by.id}}</a>  </li>
+                     </ul>
+                     <div class="card-body">
+                        <!-- <a href="{% url 'view_product' i.id%}" class="card-link text-css remove-underline">View Product</a> -->
+                        <form action="{% url 'whishlistadd' %}" method="post" enctype="multipart/form-data">
+                           {% csrf_token %} 
+                           <input type="text" value="{{i.id}}" name="pid" hidden> 
+                         <button type="submit" class="card-link text-css remove-underline">Add To Whish List</button>
+                         </form>
+                        <!-- <a href="#" class="card-link text-css remove-underline">Add To Whish List</a> -->
+                      </div>
+                     
+                  </div>
+               </div>
+            </div>
+            <!-- End -->
+               {% endfor %}
+               
+               <!-- End -->
+            </div>
+            <div class="py-5 text-right"><a href="{% url 'product_view' 0 3 %}" class="btn btn-dark px-5 py-3 text-uppercase text-css">View more</a></div>
+         </div>
+      </div>
+      <!-- -----------------------footer---------------- -->
+      <footer id="footer" class="footer-1 text-css">
+         <div class="main-footer widgets-dark typo-light">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xs-12 col-sm-6 col-md-3">
+                     <div class="widget subscribe no-box">
+                        <h5 class="widget-title text-css">COMPANY NAME<span></span></h5>
+                        <p class="text-css">About the company, little discription will goes here.. </p>
+                     </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-3">
+                     <div class="widget no-box">
+                        <h5 class="widget-title text-css">Quick Links<span></span></h5>
+                        <ul class="thumbnail-widget text-css">
+                           <li>
+                              <div class="thumb-content"><a href="#.">Get Started</a></div>
+                           </li>
+                           <li>
+                              <div class="thumb-content"><a href="#.">Top Leaders</a></div>
+                           </li>
+                           <li>
+                              <div class="thumb-content"><a href="#.">Success Stories</a></div>
+                           </li>
+                           <li>
+                              <div class="thumb-content"><a href="#.">Event/Tickets</a></div>
+                           </li>
+                           <li>
+                              <div class="thumb-content"><a href="#.">News</a></div>
+                           </li>
+                           <li>
+                              <div class="thumb-content"><a href="#.">Lifestyle</a></div>
+                           </li>
+                           <li>
+                              <div class="thumb-content"><a href="#.">About</a></div>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-3">
+                     <div class="widget no-box">
+                        <h5 class="widget-title">Get Started<span></span></h5>
+                        <p>Get access to your full Training and Marketing Suite.</p>
+                     </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-3">
+                     <div class="widget no-box">
+                        <h5 class="widget-title">Contact Us<span></span></h5>
+                        <p><a href="mailto:info@domain.com" title="glorythemes">info@domain.com</a></p>
+                        <ul class="social-footer2">
+                           <li class=""><a title="youtube" target="_blank" href="https://bit.ly/3m9avif"></a></li>
+                           <li class=""><a href="https://www.facebook.com/" target="_blank" title="Facebook"></a></li>
+                           <li class=""><a href="https://twitter.com" target="_blank" title="Twitter"></a></li>
+                           <li class=""><a title="instagram" target="_blank" href="https://www.instagram.com/"></a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="footer-copyright">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12 text-center">
+                     <p>Copyright Company Name © 2022. All rights reserved.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!-- ------------------end footer-------- -->
+      <!-- script for responsible owl---- -->
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script> 
+      <!-- 4 -->
+      <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+      <script src="{% static 'js/script.js' %}"></script>
+      <!-- -------end responsible----- -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+      <!-- ----------------- -->
+      <!-- ----------- -->
+   </body>
+</html>

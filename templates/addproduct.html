@@ -1,0 +1,104 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Bootstrap demo</title>
+      <link rel="stylesheet" href="{% static 'css/addproduct.css' %}">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+   </head>
+   <body >
+      <form id="box" class="form" role="form" method="POST" enctype="multipart/form-data" action="{% url 'add_product' %}">
+         {% csrf_token %}
+         <div class="mb-3" id="header">
+            <H1>Add Product</H1>
+            <h6 style="color: red;">{{message}}</h6>
+
+         </div>
+         
+         <div class="mb-3">
+            <label for="pid" class="form-label">Product ID</label>
+            <input type="text" class="form-control" id="pid" aria-describedby="emailHelp" name="pid" required>
+         </div>
+         <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Product Name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="productname" required>
+         </div>
+         <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Profile Photo</label>
+            <input type="file" class="form-control" id="exampleInputPassword1" name='profilephoto' required>
+         </div>
+         <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Photos</label>
+            
+            <input type="file" name="photos" class="form-control" multiple required>
+         </div>
+         <div class="mb-3 ">
+            <label class="form-label" for="exampleCheck1">Buyer Type</label>
+            <select  id="" class="form-control" name="Buyer_Type" required>
+               {% for i in buyer %} 
+               <option value={{i.id}}>{{i.name}}</option>
+               {% endfor %}
+            </select>
+         </div>
+         <div class="mb-3 ">
+            <label class="form-label" for="exampleCheck1">Catgoery</label>
+            <select name="Catgoery" id="" class="form-control" required>
+               {% for i in cat_name %} 
+               <option value={{i.id}}>{{i.name}}</option>
+               {% endfor %}
+            </select>
+         </div>
+         <div class="mb-3 ">
+            <div class="form-check"></div>
+            {% for i in Size %} 
+            <input class="form-check-input" type="checkbox" name="size" value="{{i.id}}" id="{{i.name}}">
+            <label class="form-check-label" for="{{i.name}}">
+            {{i.name}}
+            </label>
+            {% endfor %}
+         </div>
+         <!-- dropdon list -->
+         <div class="mb-3 ">
+            <label class="form-label" for="exampleCheck1">Color</label>
+            <div class="form-check"></div>
+            {% for i in color %} 
+            <input class="form-check-input" type="checkbox" name="Color" value="{{i.id}}" id="{{i.name}}" >
+            <label class="form-check-label" for="{{i.name}}">
+               <div style="height: 20px; width: 20px; background-color:{{i.name}}; border-radius: 50%;border-style:solid; border-width: 1px;">
+               </div>
+               {{i.name}}
+            </label>
+            {% endfor %}
+         </div>
+         </div>
+         <!--  -->
+         <!-- end dropdown list -->
+         </div>
+         <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Specification</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Specification" required>
+         </div>
+         
+         <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Price</label>
+            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Price" value="0" pattern="[789]{1}+[0-9]{9}" required>
+         </div>
+         <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Offer</label>
+            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Offer" value="0" pattern="[789]{1}+[0-9]{9}" required>
+         </div>
+         <div class="mb-3 ">
+            <label class="form-label" for="exampleCheck1">Avalibility</label>
+            <select name="Avalibility" id="" class="form-control" required>
+               {% for i in Availability %} 
+               <option value={{i.id}}>{{i.name}}</option>
+               {% endfor %}
+            </select>
+         </div>
+         <button type="submit" class="btn btn-dark">Submit</button>
+      </form>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+   </body>
+</html>
